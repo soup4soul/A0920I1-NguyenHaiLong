@@ -1,0 +1,37 @@
+table{
+    text-align: center;
+    border-spacing: 1px;
+}
+.head th{
+    background-color: #ff7b00;
+    color: white;
+}
+.head th:first-child{
+    background-color: #d61b06;
+    color: white;
+}
+.head th:last-child{
+    background-color: blue;
+    color: white;
+}
+.head td:first-child{
+    color: red;
+}
+.head td:last-child{
+    color: blue;
+}
+.body td{
+    font-weight: bold;
+    border: solid black;
+    border-spacing: 0;
+}
+.body td:first-child{
+    color: red;
+}
+.body td:last-child{
+    color: blue;
+}
+.body sub{
+    color: black;
+    font-weight: normal;
+}
