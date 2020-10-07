@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biến kiểu dữ liệu và toán tử</title>
+</head>
+<body>
+
+</body>
+<script>
+    let diemVatLy = parseFloat(prompt("Nhập điểm thi Vật lý: "));
+    let diemHoaHoc = parseFloat(prompt("Nhập điểm thi Hóa học: "));
+    let diemSinhHoc = parseFloat(prompt("Nhiệp điểm thi Sinh học: "));
+    let diemTong = diemVatLy + diemHoaHoc + diemSinhHoc;
+    let diemTrungBinh = (diemTong)/3;
+    document.writeln("Tông điểm thi là: " + diemTong);
+    document.write("</br>");
+    document.writeln("Điểm thi trung bình là: " + diemTrungBinh);
+</script>
+</html>

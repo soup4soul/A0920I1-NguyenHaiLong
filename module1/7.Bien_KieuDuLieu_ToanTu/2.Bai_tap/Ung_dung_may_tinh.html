@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng máy tính</title>
+</head>
+<body>
+<input id="input1"/>
+<input id="input2"/>
+<br/>
+<button type="button" id="add">Addition(+)</button>
+<button type="button" id="sub">Subtraction(-)</button>
+<button type="button" id="mul">Multiplication(*)</button>
+<button type="button" id="div">Division(/)</button>
+<br/>
+<p id="result"></p>
+<script>
+    document.getElementById("add").addEventListener("click",function(){
+        calculate(1);
+    });
+    document.getElementById("sub").addEventListener("click",function(){
+        calculate(2);
+    });
+    document.getElementById("mul").addEventListener("click",function(){
+        calculate(3);
+    });
+    document.getElementById("div").addEventListener("click",function(){
+        calculate(4);
+    });
+
+    function calculate(operation) {
+        let sothunhat = document.getElementById("input1").value;
+        let sothuhai = document.getElementById("input2").value;
+        let result = 0;
+        switch (operation) {
+            case 1:
+                result = parseFloat(sothunhat)+parseFloat(sothuhai);
+                document.getElementById("result").innerHTML = "Result Addition: "+result;
+                // alert("alo");
+                break;
+            case 2:
+                result = parseFloat(sothunhat)-parseFloat(sothuhai);
+                document.getElementById("result").innerHTML = "Result Subtraction: "+result;
+                break;
+            case 3:
+                result = parseFloat(sothunhat)*parseFloat(sothuhai);
+                document.getElementById("result").innerHTML = "Result Multiplication: "+result;
+                break;
+            case 4:
+                result = parseFloat(sothunhat)/parseFloat(sothuhai);
+                document.getElementById("result").innerHTML = "Result Division: "+result;
+        }
+    }
+</script>
+</body>
+</html>
