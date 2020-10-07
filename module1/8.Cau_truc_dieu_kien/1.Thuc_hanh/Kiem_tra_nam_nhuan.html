@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra năm nhuận</title>
+</head>
+<body>
+<script>
+    let year = parseInt(prompt("Nhập vào năm: "));
+    let namnhuan = false;
+    let isDivisibleBy4 = year % 4 === 0;
+    if (isDivisibleBy4) {
+        let isDivisibleBy100 = year % 100 === 0;
+        if (isDivisibleBy100) {
+            let isDivisibleBy400 = year % 400 === 0;
+            if(isDivisibleBy400) {
+                namnhuan = true;
+            }
+        }
+    } else {
+        namnhuan = true;
+    }
+    if (namnhuan) {
+        alert("Đây là năm nhuận!");
+    } else {
+        alert("Đây không phải là năm nhuận!");
+    }
+</script>
+</body>
+</html>

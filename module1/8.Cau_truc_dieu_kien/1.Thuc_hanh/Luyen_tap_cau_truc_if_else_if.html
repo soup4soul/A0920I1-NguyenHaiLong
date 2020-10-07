@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập cấu trúc if-else_if</title>
+</head>
+<body>
+
+<script>
+    let userid = prompt("Tên đăng nhập: ");
+    let isAdmin = userid === "Admin";
+    let isNull = userid === '';
+    if(isAdmin) {
+        let password = prompt("Password: ");
+        let isPassword = password === "TheMaster";
+        let isPasswordNull = password === '';
+        if(isPassword) {
+            document.writeln("Welcome!");
+        }
+        else if(isPasswordNull) {
+            document.writeln("Canceled");
+        } else {
+            document.writeln("Wrong Password!");
+        }
+    } else if (isNull) {
+        document.writeln("Canceled");
+    } else {
+        document.writeln("I don't know you!");
+    }
+</script>
+</body>
+</html>
