@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính chỉ số cân nặng cơ thể</title>
+</head>
+<body>
+<p>Chỉ số cân nặng (kg)</p>
+<input id="weight">
+<p>Chỉ số chiều cao (m)</p>
+<input id="height">
+<br/>
+<br/>
+<button  id="calculate">Tính chỉ số</button>
+<p id="result"></p>
+<script>
+    document.getElementById("calculate").addEventListener("click",calBmi);
+    function calBmi() {
+        let weight = parseInt(document.getElementById("weight").value);
+        let height = parseInt(document.getElementById("height").value);
+        let bmi = weight /(height ^ 2);
+        alert(bmi);
+        let result = 'Error';
+        if(bmi < 18){
+            result = 'UnderWeight';
+        } else if(18 <= bmi && bmi < 25) {
+            result = 'Normal';
+        } else if(25 <= bmi && bmi < 30){
+            result = "Overweight";
+        } else {
+            result = 'Obese';
+        }
+        document.getElementById('result').innerText = result;
+    }
+
+</script>
+</body>
+</html>

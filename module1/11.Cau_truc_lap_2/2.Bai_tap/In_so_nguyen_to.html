@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>In Số Nguyên tố</title>
+</head>
+<body>
+
+<script>
+    function checkSoNguyenTo(num){
+        let flag = true;
+        for(let i=2; i<num; i++){
+            if(num % i === 0){
+                flag= false;
+                break;
+            }
+        }
+        return flag;
+    }
+    let num = parseInt(prompt("Nhập vào số lượng số nguyên tố muốn in: "));
+    let count = 0;
+    let i=1;
+    do{
+        if(checkSoNguyenTo(i)) {
+            count++;
+            document.write(i);
+            document.write('</br>');
+        }
+        i+=2;
+    }while(count < num);
+
+</script>
+</body>
+</html>

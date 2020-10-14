@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 8</title>
+</head>
+<body>
+<button type="button" id="btn">Chơi/ Chơi lại</button>
+<script>
+    document.getElementById('btn').addEventListener('click',function () {
+        startGame();
+    });
+
+    function startGame(){
+        let init_num_from = parseInt(prompt('Nhập vào khoảng số mà bạn muốn đoán từ : '));
+        let init_num_to = parseInt(prompt('Nhập vào khoảng số mà bạn muốn đoán từ '+init_num_from+' đến: '));
+        let random_num = Math.floor((Math.random()*init_num_to)+init_num_from);
+        let guess_num;
+
+        for(let i=0; i<3; i++){
+            guess_num = parseInt(prompt('Nhập vào số bạn đoán (Nằm trong khoảng từ '+init_num_from+' đến '+init_num_to+') :'));
+            if(guess_num === random_num){
+                alert('Chúc mừng bạn đã đoán đúng !!!!!');
+                break;
+            }else if(guess_num > random_num){
+                alert('Số bạn đoán lớn hơn kết quả!');
+            }else if (guess_num < random_num){
+                alert('Số bạn đoán nhỏ hơn kết quả!');
+            }
+            if(i===2){
+                alert('Game over!!!');
+            }else{
+                alert('Mời nhập lại');
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

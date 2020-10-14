@@ -1,0 +1,17 @@
+table{
+    border:1px;
+    width: 500px;
+}
+button{
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    color: blue;
+    font-weight: bold;
+}
+input{
+    width: 400px;
+    margin-left: 1px;
+    color: blue;
+    font-weight: bold;
+}

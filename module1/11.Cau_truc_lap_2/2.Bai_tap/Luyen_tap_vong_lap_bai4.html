@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 4</title>
+</head>
+<body>
+<script>
+    let count=0;
+    let a=1;
+    let b=2;
+    let tmp;
+    let dk=false;
+    while(!dk){
+        tmp=a+b;
+        a=b;
+        b=tmp;
+        if(tmp%5 === 0){
+            dk = true;
+            document.write(tmp);
+        }
+    }
+</script>
+</body>
+</html>

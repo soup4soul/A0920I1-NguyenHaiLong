@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 5</title>
+</head>
+<body>
+<script>
+    let count=0;
+    let a=1;
+    let b=2;
+    let tmp;
+    let tong=a+b;
+    for(let i=2; i<=20; i++){
+        tmp=a+b;
+        a=b;
+        b=tmp;
+        tong+=tmp;
+    }
+    alert("Tổng 20 số đầu tiên trong dãy fibonanci là: " + tong);
+</script>
+</body>
+</html>

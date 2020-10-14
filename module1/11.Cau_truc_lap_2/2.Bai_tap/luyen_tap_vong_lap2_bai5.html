@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2.5</title>
+</head>
+<body>
+<script>
+    //input: số tiền ban đầu, số tháng cho vay, lãi suất hàng tháng(1%)
+    //output: tính lãi mẹ đẻ lãi con (giả sử hàng tháng không trả gốc và lãi)
+    let tienvay = parseInt(prompt("Nhập vào số tiền đã vay: "));
+    let thangvay = parseInt(prompt('Nhập vào số tháng vay: '));
+    let tongvay = tienvay;
+    let tienlai = 0;
+    for(let i=0; i<thangvay; i++){
+        tienlai = tongvay/100;
+        tongvay += tienlai;
+    }
+    document.write('Số tiền bạn phải trả sau '+thangvay+' tháng với số tiền gốc '+tienvay+' là: '+tongvay);
+</script>
+</body>
+</html>

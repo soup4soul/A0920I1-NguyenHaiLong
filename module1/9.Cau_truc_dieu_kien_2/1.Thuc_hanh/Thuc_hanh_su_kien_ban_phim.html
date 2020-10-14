@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sự kiện bàn phím</title>
+</head>
+<body>
+<img id="myImg" src="images/nobita.png" style="position: absolute;left: 0px; top: 0px;" height="200" width="160">
+<script>
+window.addEventListener('keydown',moveImg);
+function moveImg(event) {
+    switch (event.keyCode) {
+        case 37:
+            moveLeft();
+            break;
+        case 38:
+            moveUp();
+            break;
+        case 39:
+            moveRight();
+            break;
+        case 40:
+            moveDown();
+            break;
+    }
+}
+function moveLeft() {
+    document.getElementById("myImg").style.left = parseInt(document.getElementById("myImg").style.left) - 10 + 'px';
+}
+function moveRight() {
+    document.getElementById("myImg").style.left = parseInt(document.getElementById("myImg").style.left) + 10 + 'px';
+}
+function moveUp() {
+    document.getElementById("myImg").style.top = parseInt(document.getElementById("myImg").style.top) - 10 + 'px';
+}
+function moveDown() {
+    document.getElementById("myImg").style.top = parseInt(document.getElementById("myImg").style.top) + 10 + 'px';
+}
+</script>
+</body>
+</html>
