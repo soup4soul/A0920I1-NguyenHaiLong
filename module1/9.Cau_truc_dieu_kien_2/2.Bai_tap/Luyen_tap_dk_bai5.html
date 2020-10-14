@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 5</title>
+</head>
+<body>
+<script>
+    // Điểm trung bình >=8 xếp loại A
+    // Điểm trung bình >=6 và <8 xếp loại B
+    // Điểm trung bình < 6  xếp loại C
+
+    let diem_kiem_tra = parseInt(prompt('Nhập vào điểm kiểm tra: '));
+    let diem_giua_ki = parseInt(prompt('Nhập vào điểm giữa kì: '));
+    let diem_cuoi_ki = parseInt(prompt('Nhập vào điểm cuối kì: '));
+
+    let diem_trung_binh = (diem_kiem_tra + diem_giua_ki + diem_cuoi_ki)/3;
+
+    if(diem_trung_binh>=8){
+        alert('Xếp loại A');
+    }else if (diem_trung_binh>=6 && diem_trung_binh<8){
+        alert('Xếp loại B');
+    }else{
+        alert('Xếp loại C');
+    }
+
+</script>
+</body>
+</html>

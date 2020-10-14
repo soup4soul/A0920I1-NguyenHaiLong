@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 6</title>
+</head>
+<body>
+<script>
+    // Doanh số >=1000 : hoa hồng 10%
+    // Doanh số >=500 && <1000 : hoa hồng 8%
+    // Doanh số >=200 && <500: hoa hồng 5%
+    // Doanh số <200: hoa hồng 2%
+
+    let doanh_so = parseInt(prompt('Nhập vào doanh số: '));
+
+    if(doanh_so>=1000){
+        alert('Hoa hồng 10%');
+    }else if (doanh_so>=500 && doanh_so<1000){
+        alert('Hoa hồng 8%');
+    }else if (doanh_so>=200 && doanh_so<500){
+        alert('Hoa hồng 5%');
+    }else{
+        alert('Hoa hồng 2%');
+    }
+
+</script>
+</body>
+</html>
