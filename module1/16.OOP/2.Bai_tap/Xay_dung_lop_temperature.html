@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature</title>
+</head>
+<body>
+<script>
+    class Temperature{
+        constructor(tempC) {
+            this.tempC = tempC;
+        }
+        setTempC(value){
+            this.tempC = value;
+        }
+        getTempF(){
+            return this.tempC*1.8+32;
+        }
+        getTempK(){
+            return this.tempC+273.15;
+        }
+    }
+
+    let temp = new Temperature();
+    temp.setTempC(100);
+    alert(temp.getTempF());
+    alert(temp.getTempK());
+
+</script>
+</body>
+</html>

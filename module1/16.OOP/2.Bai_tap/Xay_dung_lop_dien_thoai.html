@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile</title>
+</head>
+<body>
+<script>
+    class Mobile{
+        constructor(battery, status, messagetext, messageinbox, messagesent ) {
+            this.battery = battery;
+            this.status = status;
+            this.messagetext = messagetext;
+            this.messageinbox = new Array(20);
+            this.messagesent = new Array(20);
+        }
+        checkStatus(){
+            return !!this.status;
+        }
+        turnOnOff(value){
+            this.status = value;
+        }
+        chargeBattery(){
+            if(this.battery<100){
+                this.battery += 1;
+            }
+        }
+        writeMessage(value){
+            this.messagetext = value;
+        }
+        receiveMessage(value){
+            
+        }
+
+    }
+</script>
+</body>
+</html>

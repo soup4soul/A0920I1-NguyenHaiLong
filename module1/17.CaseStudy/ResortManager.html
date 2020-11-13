@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>
+            <label>Name:</label>
+        </td>
+        <td>
+            <input id="customerName"
+                   type="text"
+                   placeholder="Your Name"
+            >
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>ID:</label>
+        </td>
+        <td>
+            <input id="customerId"
+                   type="number"
+                   placeholder="Your ID"
+            >
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Birthday:</label>
+        </td>
+        <td>
+            <input id="customerBirthday"
+                   type="date"
+                   placeholder="Your Birthday"
+            >
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Email:</label>
+        </td>
+        <td>
+            <input id="customerEmail"
+                   type="email"
+                   placeholder="Your Email"
+            >
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Address:</label>
+        </td>
+        <td>
+            <input id="customerAddress"
+                   type="text"
+                   placeholder="Your Address"
+            >
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Customer Type:</label>
+        </td>
+        <td>
+            <select>
+                <option>Diamond</option>
+                <option>Platinum</option>
+                <option>Gold</option>
+                <option>Silver</option>
+                <option>Member</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Discount Code:</label>
+        </td>
+        <td>
+            <input id="customerDiscountCode"
+                   type="text"
+            >
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Name:</label>
+        </td>
+        <td>
+            <input id="customerName"
+                   type="text"
+                   placeholder="Your Name"
+            >
+        </td>
+    </tr>
+</table>
+
+
+<script>
+    class Customers{
+        constructor(Name, Id, Birthday, Email, Address, Type, Discount, Amount, RentDays, Service, Room) {
+            this.name = Name;
+            this.id = Id;
+            this.birthday = Birthday;
+            this.email = Email;
+            this.address = Address;
+            this.type = Type;
+            this.discount = Discount;
+            this.amount = Amount;
+            this.rentdays = RentDays;
+            this.service = Service;
+            this.room = Room;
+        }
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Từ điển đơn giản</title>
+</head>
+<body>
+<script>
+    let tiengAnh=['dog','cat','fish','elephant'];
+    let tiengViet=['chó','mèo','cá','voi'];
+
+    let word=prompt('Nhập từ muốn tìm kiếm: ');
+    if(tiengAnh.indexOf(word) !== -1){
+        alert(word + ' có nghĩa tiếng Việt là: ' + tiengViet[tiengAnh.indexOf(word)]);
+    }else{
+        alert('Không tìm thấy từ '+word);
+    }
+</script>
+</body>
+</html>

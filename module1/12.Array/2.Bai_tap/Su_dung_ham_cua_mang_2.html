@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chèn dấu '-' vào giữa 2 số chẵn</title>
+</head>
+<body>
+<script>
+    let mangA = [0,2,5,4,6,8];
+    let result = [mangA[0]];
+    for(let i = 1; i<mangA.length; i++){
+        if(mangA[i]%2 == 0 & mangA[i-1]%2 == 0){
+            result.push('-', mangA[i]);
+        }else {
+            result.push(mangA[i]);
+        }
+    }
+    document.write(result);
+</script>
+</body>
+</html>

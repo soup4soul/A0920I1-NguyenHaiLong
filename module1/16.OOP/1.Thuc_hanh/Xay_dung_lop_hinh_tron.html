@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xay dung lop hinh tron</title>
+</head>
+<body>
+<script>
+    class Circle{
+        constructor(radius, color) {
+            this.radius = radius;
+            this.color = color;
+        }
+        getRadius(){
+            return this.radius;
+        }
+        getArea(){
+            return Math.PI*this.radius*this.radius;
+        }
+    }
+
+    let hinhtron = new Circle(2,'blue');
+    let bankinh = hinhtron.getRadius();
+    let dientich = hinhtron.getArea();
+    alert(bankinh);
+    alert(dientich);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xay dung lop hinh chu nhat</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1000" height="500px" style="border:1px solid #d3d3d3;">
+<script>
+    class Rectangle{
+        constructor(width, height) {
+            this.width = width;
+            this.height = height;
+        }
+        setWidth(value){
+            this.width = value;
+        }
+        setHeight(value){
+            this.height = value;
+        }
+        getArea(){
+            return this.width*this.height;
+        }
+        getPerimeter(){
+            return 2*(this.width+this.height);
+        }
+        createRectangle(x,y){
+            let ctx = document.getElementById('myCanvas').getContext('2d');
+            ctx.beginPath();
+            ctx.fillRect(x, y, this.width, this.height);
+            ctx.fill();
+        }
+    }
+
+    let rect = new Rectangle(200,100);
+    rect.createRectangle(500, 200);
+
+    rect.setHeight(20);
+    rect.setWidth(40);
+    alert(rect.getArea());
+    alert(rect.getPerimeter());
+</script>
+</body>
+</html>

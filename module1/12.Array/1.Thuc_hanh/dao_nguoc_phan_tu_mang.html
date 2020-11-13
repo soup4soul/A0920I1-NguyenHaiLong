@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đảo ngược các phần tử trong mảng</title>
+</head>
+<body>
+<script>
+    let mangA = [-3,5,1,3,2,10];
+    let j = mangA.length - 1;
+    for(let i = 0; i<(mangA.length /2); i++){
+        let tmp;
+        tmp = mangA[i];
+        mangA[i] = mangA[j];
+        mangA[j] = tmp;
+        j--;
+    }
+    document.write(mangA);
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>công tắc- bóng đèn</title>
+</head>
+<body>
+<img src="" id="lamp">
+<button onclick="switchButton()">On/Off</button>
+<script>
+    class ElectricLamp{
+        constructor() {
+            document.getElementById("lamp").src = "img/light_off.jpg"
+        }
+        turnOn () {
+            document.getElementById('lamp').src = "img/light_on.jpg"
+        }
+        turnOff () {
+            document.getElementById('lamp').src = "img/light_off.jpg"
+        }
+    }
+
+    class Button{
+        constructor(status, lamp) {
+            this.lamp = lamp;
+            this.status = status;
+        }
+        connectToLamp(lamp){
+            this.lamp = lamp;
+        }
+        turnOnButton(){
+            this.lamp.turnOn();
+            this.status = true;
+        }
+        turnOffButton(){
+            this.lamp.turnOff();
+            this.status = false;
+        }
+    }
+
+    let lamp = new ElectricLamp();
+    let button = new Button(false, lamp);
+
+    function switchButton() {
+        if(button.status){
+            button.turnOffButton();
+        }else {
+            button.turnOnButton();
+        }
+    }
+</script>
+</body>
+</html>
