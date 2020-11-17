@@ -5,117 +5,192 @@
     <title>Title</title>
 </head>
 <body>
-<table>
-    <tr>
-        <td>
-            <label>Name:</label>
-        </td>
-        <td>
-            <input id="customerName"
-                   type="text"
-                   placeholder="Your Name"
-            >
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>ID:</label>
-        </td>
-        <td>
-            <input id="customerId"
-                   type="number"
-                   placeholder="Your ID"
-            >
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Birthday:</label>
-        </td>
-        <td>
-            <input id="customerBirthday"
-                   type="date"
-                   placeholder="Your Birthday"
-            >
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Email:</label>
-        </td>
-        <td>
-            <input id="customerEmail"
-                   type="email"
-                   placeholder="Your Email"
-            >
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Address:</label>
-        </td>
-        <td>
-            <input id="customerAddress"
-                   type="text"
-                   placeholder="Your Address"
-            >
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Customer Type:</label>
-        </td>
-        <td>
-            <select>
-                <option>Diamond</option>
-                <option>Platinum</option>
-                <option>Gold</option>
-                <option>Silver</option>
-                <option>Member</option>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Discount Code:</label>
-        </td>
-        <td>
-            <input id="customerDiscountCode"
-                   type="text"
-            >
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Name:</label>
-        </td>
-        <td>
-            <input id="customerName"
-                   type="text"
-                   placeholder="Your Name"
-            >
-        </td>
-    </tr>
-</table>
-
 
 <script>
     class Customers{
-        constructor(Name, Id, Birthday, Email, Address, Type, Discount, Amount, RentDays, Service, Room) {
-            this.name = Name;
-            this.id = Id;
-            this.birthday = Birthday;
-            this.email = Email;
-            this.address = Address;
-            this.type = Type;
-            this.discount = Discount;
-            this.amount = Amount;
-            this.rentdays = RentDays;
-            this.service = Service;
-            this.room = Room;
+        constructor(name, id, birthday, email, address, type, discount, amount, rentdays, service, room) {
+            this.name = name;
+            this.id = id;
+            this.birthday = birthday;
+            this.email = email;
+            this.address = address;
+            this.type = type;
+            this.discount = discount;
+            this.amount = amount;
+            this.rentdays = rentdays;
+            this.service = service;
+            this.room = room;
+        }
+        setName(name){
+            this.name = name;
+        }
+        setID(id){
+            this.id = id;
+        }
+        setBirthday(birth){
+            this.birthday = birth;
+        }
+        setEmail(email){
+            this.email = email;
+        }
+        setAddr(add){
+            this.address = add;
+        }
+        setType(type){
+            this.type = type;
+        }
+        setDiscount(discount){
+            this.discount = discount;
+        }
+        setAmount(amount){
+            this.amount = amount;
+        }
+        setRentDays(day){
+            this.rentdays = day;
+        }
+        setService(ser){
+            this.service = ser;
+        }
+        setRoom(room){
+            this.room = room;
+        }
+        getName(){
+            return this.name;
+        }
+        getID(){
+            return this.id;
+        }
+        getBirthday(){
+            return this.birthday;
+        }
+        getEmail(){
+            return this.email;
+        }
+        getAddr(){
+            return this.address;
+        }
+        getType(){
+            return this.type;
+        }
+        getDiscount(){
+            return this.discount;
+        }
+        getAmount(){
+            return this.amount;
+        }
+        getRentDays(){
+            return this.rentdays;
+        }
+        getService(){
+            return this.service;
+        }
+        getRoom(){
+            return this.room;
         }
     }
 
+    function displayCustomer() {
+        document.body.innerHTML = "";
+        let tmp = "<table border='1'>";
+        tmp += "<tr>";
+        tmp += "<th width='100px'>Name</th>";
+        tmp += "<th width='100px'>ID</th>";
+        tmp += "<th width='100px'>Birthday</th>";
+        tmp += "<th width='100px'>Email</th>";
+        tmp += "<th width='100px'>Address</th>";
+        tmp += "<th width='100px'>Type</th>";
+        tmp += "<th width='100px'>Discount</th>";
+        tmp += "<th width='100px'>Amount</th>";
+        tmp += "<th width='100px'>Rent Days</th>";
+        tmp += "<th width='100px'>Service</th>";
+        tmp += "<th width='100px'>Room</th>";
+        tmp += "</tr>";
+        for (let i=0; i<arrListCustomer.length; i++){
+            tmp += "<tr>";
+            tmp += "<td>"+ arrListCustomer[i].getName() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getID() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getBirthday() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getEmail() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getAddr() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getType() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getDiscount() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getAmount() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getRentDays() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getService() + "</td>";
+            tmp += "<td>"+ arrListCustomer[i].getRoom() + "</td>";
+            tmp += "<td><button style='width: 75px' onclick='editCustomer("+i+")'>Edit</button></td>";
+            tmp += "<td><button style='width: 75px' onclick='deleteCustomer("+i+")'>Delete</button></td>";
+            tmp += "<td><button style='width: 75px'>Cost</button></td>";
+            tmp += "</tr>";
+        }
+        tmp += "</table>";
+        tmp += "<button onclick='displayAddNewCustomer()'>ADD Customer</button>";
+        document.write(tmp);
+    }
+
+    function displayAddNewCustomer(){
+        document.body.innerHTML = "";
+        let tmp = "<table>";
+        tmp += "<tr><td><label>Name :</label></td> <td><input id='name' type='text' placeholder='Customer Name'></td></tr>";
+        tmp += "<tr><td><label>ID :</label></td><td> <input id='id' type='text' placeholder='Customer ID'></td></tr>";
+        tmp += "<tr><td><label>Birthday :</label></td> <td><input id='birthday' type='date' placeholder='Customer Birthday'></td></tr>";
+        tmp += "<tr><td><label>Email :</label></td> <td><input id='email' type='text' placeholder='Customer Email'></td></tr>";
+        tmp += "<tr><td><label>Address :</label></td> <td><input id='address' type='text' placeholder='Customer Address'></td></tr>";
+        tmp += "<tr><td><label>Type :</label></td> <td><select id='type'><option>Diamond</option><option>Plantinum</option><option>Gold</option><option>Silver</option><option>Member</option></select></td></tr>";
+        tmp += "<tr><td><label>Discount :</label></td> <td><input id='discount' type='number'></td></tr>";
+        tmp += "<tr><td><label>Amount :</label></td> <td><input id='amount' type='number' placeholder='Customer Amount'></td></tr>";
+        tmp += "<tr><td><label>Rent Days :</label></td> <td><input id='rentdays' type='number'></td></tr>";
+        tmp += "<tr><td><label>Service :</label></td> <td><select id='service'><option>Villa</option><option>House</option><option>Room</option></select></td></tr>";
+        tmp += "<tr><td><label>Room :</label></td> <td><select id='room'><option>Vip</option><option>Business</option><option>Normal</option></select></td></tr>";
+        tmp += "</table>";
+        tmp += "<button onclick='addNewCustomer()'>ADD</button>";
+        document.write(tmp);
+    }
+
+    function addNewCustomer(){
+        let name = document.getElementById("name").value;
+        let id = document.getElementById("id").value;
+        let birthday = document.getElementById("birthday").value;
+        let email = document.getElementById("email").value;
+        let address = document.getElementById("address").value;
+        let type = document.getElementById("type").value;
+        let discount = document.getElementById("discount").value;
+        let amount = document.getElementById("amount").value;
+        let rentdays = document.getElementById("rentdays").value;
+        let service = document.getElementById("service").value;
+        let room = document.getElementById("room").value;
+        arrListCustomer.push(new Customers(name, id, birthday, email, address, type, discount, amount, rentdays, service, room));
+        displayCustomer();
+    }
+
+    function editCustomer(i) {
+        document.body.innerHTML = "";
+        let tmp = "<table>";
+        tmp += "<tr><td><label>Name :</label></td> <td><input id='name' type='text' value='"+arrListCustomer[i].getName()+"'></td></tr>";
+        tmp += "<tr><td><label>ID :</label></td><td> <input id='id' type='text' value='"+arrListCustomer[i].getID()+"'></td></tr>";
+        tmp += "<tr><td><label>Birthday :</label></td> <td><input id='birthday' type='date' value='"+arrListCustomer[i].getBirthday()+"'></td></tr>";
+        tmp += "<tr><td><label>Email :</label></td> <td><input id='email' type='text' value='"+arrListCustomer[i].getEmail()+"'></td></tr>";
+        tmp += "<tr><td><label>Address :</label></td> <td><input id='address' type='text' value='"+arrListCustomer[i].getAddr()+"'></td></tr>";
+        tmp += "<tr><td><label>Type :</label></td> <td><select id='type'><option>Diamond</option><option>Plantinum</option><option>Gold</option><option>Silver</option><option>Member</option></select></td></tr>";
+        tmp += "<tr><td><label>Discount :</label></td> <td><input id='discount' type='number'></td></tr>";
+        tmp += "<tr><td><label>Amount :</label></td> <td><input id='amount' type='number' placeholder='Customer Amount'></td></tr>";
+        tmp += "<tr><td><label>Rent Days :</label></td> <td><input id='rentdays' type='number'></td></tr>";
+        tmp += "<tr><td><label>Service :</label></td> <td><select id='service'><option>Villa</option><option>House</option><option>Room</option></select></td></tr>";
+        tmp += "<tr><td><label>Room :</label></td> <td><select id='room'><option>Vip</option><option>Business</option><option>Normal</option></select></td></tr>";
+        tmp += "</table>";
+        tmp += "<button onclick=''>Edit</button>";
+        document.write(tmp);
+    }
+
+    function deleteCustomer(i){
+        if(confirm('Are you sure?')){
+            arrListCustomer.splice(i,1);
+        }
+        displayCustomer();
+    }
+
+    let arrListCustomer = [];
+    displayCustomer();
 
 </script>
 </body>
