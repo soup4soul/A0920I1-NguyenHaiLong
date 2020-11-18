@@ -8,18 +8,21 @@
 
 <script>
     class Customers{
-        constructor(name, id, birthday, email, address, type, discount, amount, rentdays, service, room) {
+        constructor(name, id, birthday, email, address, type, typenum, discount, amount, rentdays, service, servicenum, room, roomnum) {
             this.name = name;
             this.id = id;
             this.birthday = birthday;
             this.email = email;
             this.address = address;
             this.type = type;
+            this.typenum = typenum
             this.discount = discount;
             this.amount = amount;
             this.rentdays = rentdays;
             this.service = service;
+            this.servicenum = servicenum;
             this.room = room;
+            this.roomnum = roomnum;
         }
         setName(name){
             this.name = name;
@@ -72,6 +75,9 @@
         getType(){
             return this.type;
         }
+        getTypeNum(){
+            return this.typenum;
+        }
         getDiscount(){
             return this.discount;
         }
@@ -84,15 +90,163 @@
         getService(){
             return this.service;
         }
+        getServiceNum(){
+            return this.servicenum;
+        }
         getRoom(){
             return this.room;
         }
+        getRoomNum(){
+            return this.roomnum;
+        }
     }
 
-    function displayCustomer() {
+    class Employee{
+        constructor(name, id, birthday, email, address, type, typenum ) {
+            this.name = name;
+            this.id = id;
+            this.birthday = birthday;
+            this.email = email;
+            this.address = address;
+            this.type = type;
+            this.typenum = typenum;
+        }
+        setName(name){
+            this.name = name;
+        }
+        setID(id){
+            this.id = id;
+        }
+        setBirthday(birth){
+            this.birthday = birth;
+        }
+        setEmail(email){
+            this.email = email;
+        }
+        setAddr(add){
+            this.address = add;
+        }
+        setType(type){
+            this.type = type;
+        }
+        getName(){
+            return this.name;
+        }
+        getID(){
+            return this.id;
+        }
+        getBirthday(){
+            return this.birthday;
+        }
+        getEmail(){
+            return this.email;
+        }
+        getAddr(){
+            return this.address;
+        }
+        getType(){
+            return this.type;
+        }
+        getTypeNum(){
+            return this.typenum;
+        }
+    }
+    function fixName(name) {
+        let tmpName = "";
+        name = name.trim().toLowerCase();
+        for (let i=0; i<name.length; i++){
+            if(name.charAt(i) === " "&& name.charAt(i+1) === " "){
+                continue;
+            }
+            if (i===0 || name.charAt(i-1)===" "){
+                tmpName += name.charAt(i).toUpperCase();
+                continue;
+            }
+            tmpName += name.charAt(i);
+        }
+        return tmpName;
+    }
+
+    function checkId(id){
+        if(!isNaN(id)){
+            id = Number.parseInt(id);
+        }
+        if(!Number.isInteger(id)){
+            alert("Wrong ID (not number)!");
+            return false;
+        }else if(id<10000000||id>99999999){
+            alert("Wrong ID!");
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    function checkEmail(email) {
+        let countAt = 0;
+        let countDoc = 0;
+        for (let i=0; i<email.length; i++){
+            if(email.charAt(i)==="@"){
+                countAt++;
+                for (let j=i+1; j<email.length; j++){
+                    if(email.charAt(j)==="."){
+                        countDoc++;
+                    }
+                }
+            }
+        }
+        if(countAt!== 1 || countDoc < 1){
+            alert("Wrong Email!!!");
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    function checkRentDays(rentdays) {
+        if(!isNaN(rentdays)) {
+            rentdays = Number.parseFloat(rentdays);
+        }
+        if(Number.isInteger(rentdays) && rentdays >0){
+            return true;
+        }else {
+            alert("Wrong Rent Days!");
+            return false;
+        }
+    }
+
+    function displayMenu() {
+        document.body.innerHTML = "";
+        let tmp = "<button onclick='displayCustomerMenu()'>Customer Manager</button>";
+        tmp += "<button onclick='displayEmployeeMenu()'>Employee Manager</button>";
+        document.write(tmp);
+    }
+
+    function displayCustomerMenu(){
         document.body.innerHTML = "";
         let tmp = "<table border='1'>";
         tmp += "<tr>";
+        tmp += "<th width='100px'>No.</th>";
+        tmp += "<th width='100px'>Name</th>";
+        tmp += "</tr>";
+        for (let i=0; i<arrListCustomer.length; i++){
+            tmp += "<tr>";
+            tmp += "<td>"+i+"</td>";
+            tmp += "<td>"+arrListCustomer[i].getName()+"</td>";
+            tmp += "<td><button style='width: 75px' onclick='displayCustomer("+i+")'>View</button></td>";
+            tmp += "</tr>";
+        }
+        tmp += "</table>";
+        tmp += "<button onclick='displayAddNewCustomer()'>ADD Customer</button>";
+        tmp += "<button onclick='displayMenu()'>Main Menu</button>";
+        document.write(tmp);
+    }
+
+    function displayCustomer(i) {
+        document.body.innerHTML = "";
+        let tmp = "<table border='1'>";
+        tmp += "<tr>";
+        tmp += "<th width='100px'>No.</th>";
         tmp += "<th width='100px'>Name</th>";
         tmp += "<th width='100px'>ID</th>";
         tmp += "<th width='100px'>Birthday</th>";
@@ -105,26 +259,25 @@
         tmp += "<th width='100px'>Service</th>";
         tmp += "<th width='100px'>Room</th>";
         tmp += "</tr>";
-        for (let i=0; i<arrListCustomer.length; i++){
-            tmp += "<tr>";
-            tmp += "<td>"+ arrListCustomer[i].getName() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getID() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getBirthday() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getEmail() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getAddr() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getType() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getDiscount() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getAmount() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getRentDays() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getService() + "</td>";
-            tmp += "<td>"+ arrListCustomer[i].getRoom() + "</td>";
-            tmp += "<td><button style='width: 75px' onclick='editCustomer("+i+")'>Edit</button></td>";
-            tmp += "<td><button style='width: 75px' onclick='deleteCustomer("+i+")'>Delete</button></td>";
-            tmp += "<td><button style='width: 75px'>Cost</button></td>";
-            tmp += "</tr>";
-        }
+        tmp += "<tr>";
+        tmp += "<td>"+ i + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getName() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getID() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getBirthday() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getEmail() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getAddr() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getType() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getDiscount() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getAmount() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getRentDays() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getService() + "</td>";
+        tmp += "<td>"+ arrListCustomer[i].getRoom() + "</td>";
+        tmp += "<td><button style='width: 75px' onclick='displayEditCustomer("+i+")'>Edit</button></td>";
+        tmp += "<td><button style='width: 75px' onclick='deleteCustomer("+i+")'>Delete</button></td>";
+        tmp += "<td><button style='width: 75px' onclick='calCostCustomer("+i+")'>Cost</button></td>";
+        tmp += "</tr>";
         tmp += "</table>";
-        tmp += "<button onclick='displayAddNewCustomer()'>ADD Customer</button>";
+        tmp += "<button onclick='displayMenu()'>Main Menu</button>";
         document.write(tmp);
     }
 
@@ -143,27 +296,53 @@
         tmp += "<tr><td><label>Service :</label></td> <td><select id='service'><option>Villa</option><option>House</option><option>Room</option></select></td></tr>";
         tmp += "<tr><td><label>Room :</label></td> <td><select id='room'><option>Vip</option><option>Business</option><option>Normal</option></select></td></tr>";
         tmp += "</table>";
-        tmp += "<button onclick='addNewCustomer()'>ADD</button>";
+        tmp += "<button onclick='addCustomer()'>Add</button>";
+        tmp += "<button onclick='displayCustomerMenu()'>Cancel</button>";
         document.write(tmp);
     }
 
-    function addNewCustomer(){
+    function checkNewCustomer(){
         let name = document.getElementById("name").value;
+        name = fixName(name);
         let id = document.getElementById("id").value;
-        let birthday = document.getElementById("birthday").value;
-        let email = document.getElementById("email").value;
-        let address = document.getElementById("address").value;
-        let type = document.getElementById("type").value;
-        let discount = document.getElementById("discount").value;
-        let amount = document.getElementById("amount").value;
-        let rentdays = document.getElementById("rentdays").value;
-        let service = document.getElementById("service").value;
-        let room = document.getElementById("room").value;
-        arrListCustomer.push(new Customers(name, id, birthday, email, address, type, discount, amount, rentdays, service, room));
-        displayCustomer();
+        if (!checkId(id)){
+            return false;
+        }else{
+            let birthday = document.getElementById("birthday").value;
+            let email = document.getElementById("email").value;
+            if(!checkEmail(email)){
+                return false;
+            }else{
+                let address = document.getElementById("address").value;
+                let type = document.getElementById("type").value;
+                let typenum = document.getElementById("type").selectedIndex;
+                let discount = document.getElementById("discount").value;
+                let amount = document.getElementById("amount").value;
+                let rentdays = document.getElementById("rentdays").value;
+                if(!checkRentDays(rentdays)){
+                    return false;
+                }else{
+                    let service = document.getElementById("service").value;
+                    let servicenum = document.getElementById("service").selectedIndex;
+                    let room = document.getElementById("room").value;
+                    let roomnum = document.getElementById("room").selectedIndex;
+                    arrListCustomer.push(new Customers(name, id, birthday, email, address, type, typenum, discount, amount, rentdays, service, servicenum, room, roomnum));
+                    return true;
+                }
+            }
+        }
     }
 
-    function editCustomer(i) {
+    function addCustomer() {
+        if(checkNewCustomer()){
+            alert('Add Customer Success!');
+            displayCustomerMenu();
+        }else{
+            displayAddNewCustomer();
+        }
+    }
+
+    function displayEditCustomer(i) {
         document.body.innerHTML = "";
         let tmp = "<table>";
         tmp += "<tr><td><label>Name :</label></td> <td><input id='name' type='text' value='"+arrListCustomer[i].getName()+"'></td></tr>";
@@ -172,25 +351,270 @@
         tmp += "<tr><td><label>Email :</label></td> <td><input id='email' type='text' value='"+arrListCustomer[i].getEmail()+"'></td></tr>";
         tmp += "<tr><td><label>Address :</label></td> <td><input id='address' type='text' value='"+arrListCustomer[i].getAddr()+"'></td></tr>";
         tmp += "<tr><td><label>Type :</label></td> <td><select id='type'><option>Diamond</option><option>Plantinum</option><option>Gold</option><option>Silver</option><option>Member</option></select></td></tr>";
-        tmp += "<tr><td><label>Discount :</label></td> <td><input id='discount' type='number'></td></tr>";
-        tmp += "<tr><td><label>Amount :</label></td> <td><input id='amount' type='number' placeholder='Customer Amount'></td></tr>";
-        tmp += "<tr><td><label>Rent Days :</label></td> <td><input id='rentdays' type='number'></td></tr>";
+        tmp += "<tr><td><label>Discount :</label></td> <td><input id='discount' type='number' value='"+arrListCustomer[i].getDiscount()+"'></td></tr>";
+        tmp += "<tr><td><label>Amount :</label></td> <td><input id='amount' type='number' value='"+arrListCustomer[i].getAmount()+"'></td></tr>";
+        tmp += "<tr><td><label>Rent Days :</label></td> <td><input id='rentdays' type='number' value='"+arrListCustomer[i].getRentDays()+"'></td></tr>";
         tmp += "<tr><td><label>Service :</label></td> <td><select id='service'><option>Villa</option><option>House</option><option>Room</option></select></td></tr>";
         tmp += "<tr><td><label>Room :</label></td> <td><select id='room'><option>Vip</option><option>Business</option><option>Normal</option></select></td></tr>";
         tmp += "</table>";
-        tmp += "<button onclick=''>Edit</button>";
+        tmp += "<button onclick='editCustomer("+i+")'>OK</button>";
+        tmp += "<button onclick='displayCustomerMenu()'>Cancel</button>";
         document.write(tmp);
+        document.getElementById("type").options[arrListCustomer[i].getTypeNum()].setAttribute('selected','selected');
+        document.getElementById("service").options[arrListCustomer[i].getServiceNum()].setAttribute('selected','selected');
+        document.getElementById("room").options[arrListCustomer[i].getRoomNum()].setAttribute('selected','selected');
+    }
+
+    function editCustomer(i) {
+        if(checkEditCustomer()){
+            alert('Edit Customer Success!');
+            displayCustomerMenu();
+        }else{
+            displayEditCustomer(i);
+        }
+    }
+
+    function checkEditCustomer(i) {
+        let name = document.getElementById("name").value;
+        name = fixName(name);
+        let id = document.getElementById("id").value;
+        if (!checkId(id)){
+            return false;
+        }else{
+            let birthday = document.getElementById("birthday").value;
+            let email = document.getElementById("email").value;
+            if(!checkEmail(email)){
+                return false;
+            }else{
+                let address = document.getElementById("address").value;
+                let type = document.getElementById("type").value;
+                let typenum = document.getElementById("type").selectedIndex;
+                let discount = document.getElementById("discount").value;
+                let amount = document.getElementById("amount").value;
+                let rentdays = document.getElementById("rentdays").value;
+                if(!checkRentDays(rentdays)){
+                    return false;
+                }else{
+                    let service = document.getElementById("service").value;
+                    let servicenum = document.getElementById("service").selectedIndex;
+                    let room = document.getElementById("room").value;
+                    let roomnum = document.getElementById("room").selectedIndex;
+                    arrListCustomer[i] = new Customers(name, id, birthday, email, address, type, typenum, discount, amount, rentdays, service, servicenum, room, roomnum);
+                    return true;
+                }
+            }
+        }
     }
 
     function deleteCustomer(i){
         if(confirm('Are you sure?')){
             arrListCustomer.splice(i,1);
         }
-        displayCustomer();
+        displayCustomerMenu();
+    }
+
+    function calCostCustomer(i){
+        let cost = 0;
+        let costservice = 0;
+        let costdiscountbyaddr = 0;
+        let costdiscountbyrentdays = 0;
+        let costdiscountbytype = 0;
+        switch (arrListCustomer[i].getService()) {
+            case "Villa":
+                costservice = 500;
+                break;
+            case "House":
+                costservice = 300;
+                break;
+            case "Room":
+                costservice = 100;
+                break;
+            default:
+                break;
+        }
+        costdiscountbyaddr = (arrListCustomer[i].getAddr()==="Đà Nẵng"? 20:arrListCustomer[i].getAddr()==="Huế"? 10:arrListCustomer[i].getAddr()==="Quảng Nam"? 5:0);
+        costdiscountbytype = (arrListCustomer[i].getType()==="Diamond"? 15:arrListCustomer[i].getType()==="Platinum"? 10:arrListCustomer[i].getType()==="Gold"? 5:arrListCustomer[i].getType()==="Silver"? 2:0);
+        if(arrListCustomer[i].getRentDays()>=7){
+            costdiscountbyrentdays = 30;
+        }else if(arrListCustomer[i].getRentDays()>4 && arrListCustomer[i].getRentDays()<8){
+            costdiscountbyrentdays = 20;
+        }else if(arrListCustomer[i].getRentDays()>1 && arrListCustomer[i].getRentDays()<5){
+            costdiscountbyrentdays = 10;
+        }
+        cost = (costservice * arrListCustomer[i].getRentDays() * (1 - arrListCustomer[i].getDiscount()/100)) - (costdiscountbyaddr + costdiscountbytype + costdiscountbyrentdays);
+        alert("Total: "+cost+"$");
+    }
+
+    function displayEmployeeMenu(){
+        document.body.innerHTML = "";
+        let tmp = "<table border='1'>";
+        tmp += "<tr>";
+        tmp += "<th width='100px'>No.</th>";
+        tmp += "<th width='100px'>Name</th>";
+        tmp += "</tr>";
+        for (let i=0; i<arrListEmployee.length; i++){
+            tmp += "<tr>";
+            tmp += "<td>"+i+"</td>";
+            tmp += "<td>"+arrListEmployee[i].getName()+"</td>";
+            tmp += "<td><button style='width: 75px' onclick='displayEmployee("+i+")'>View</button></td>";
+            tmp += "</tr>";
+        }
+        tmp += "</table>";
+        tmp += "<button onclick='displayAddNewEmployee()'>ADD Employee</button>";
+        tmp += "<button onclick='displayMenu()'>Main Menu</button>";
+        document.write(tmp);
+    }
+
+    function displayAddNewEmployee(){
+        document.body.innerHTML = "";
+        let tmp = "<table>";
+        tmp += "<tr><td><label>Name :</label></td> <td><input id='name' type='text' placeholder='Employee Name'></td></tr>";
+        tmp += "<tr><td><label>ID :</label></td><td> <input id='id' type='text' placeholder='Employee ID'></td></tr>";
+        tmp += "<tr><td><label>Birthday :</label></td> <td><input id='birthday' type='date' placeholder='Employee Birthday'></td></tr>";
+        tmp += "<tr><td><label>Email :</label></td> <td><input id='email' type='text' placeholder='Employee Email'></td></tr>";
+        tmp += "<tr><td><label>Address :</label></td> <td><input id='address' type='text' placeholder='Employee Address'></td></tr>";
+        tmp += "<tr><td><label>Type :</label></td> <td><select id='type'><option>Manager</option><option>Sale</option><option>Marketing</option></td></tr>";
+        tmp += "</table>";
+        tmp += "<button onclick='addEmployee()'>Add</button>";
+        tmp += "<button onclick='displayEmployeeMenu()'>Cancel</button>";
+        document.write(tmp);
+    }
+
+    function checkNewEmployee(){
+        let name = document.getElementById("name").value;
+        name = fixName(name);
+        let id = document.getElementById("id").value;
+        if (!checkId(id)){
+            return false;
+        }else{
+            let birthday = document.getElementById("birthday").value;
+            let email = document.getElementById("email").value;
+            if(!checkEmail(email)){
+                return false;
+            }else{
+                let address = document.getElementById("address").value;
+                let type = document.getElementById("type").value;
+                let typenum = document.getElementById("type").selectedIndex;
+                arrListEmployee.push(new Employee(name, id, birthday, email, address, type, typenum));
+                return true;
+                }
+            }
+    }
+
+
+    function addEmployee() {
+        if(checkNewEmployee()){
+            alert('Add Employee Success!');
+            displayEmployeeMenu();
+        }else{
+            displayAddNewEmployee();
+        }
+    }
+
+    function displayEmployee(i) {
+        document.body.innerHTML = "";
+        let tmp = "<table border='1'>";
+        tmp += "<tr>";
+        tmp += "<th width='100px'>No.</th>";
+        tmp += "<th width='100px'>Name</th>";
+        tmp += "<th width='100px'>ID</th>";
+        tmp += "<th width='100px'>Birthday</th>";
+        tmp += "<th width='100px'>Email</th>";
+        tmp += "<th width='100px'>Address</th>";
+        tmp += "<th width='100px'>Type</th>";
+        tmp += "</tr>";
+        tmp += "<tr>";
+        tmp += "<td>"+ i + "</td>";
+        tmp += "<td>"+ arrListEmployee[i].getName() + "</td>";
+        tmp += "<td>"+ arrListEmployee[i].getID() + "</td>";
+        tmp += "<td>"+ arrListEmployee[i].getBirthday() + "</td>";
+        tmp += "<td>"+ arrListEmployee[i].getEmail() + "</td>";
+        tmp += "<td>"+ arrListEmployee[i].getAddr() + "</td>";
+        tmp += "<td>"+ arrListEmployee[i].getType() + "</td>";
+        tmp += "<td><button style='width: 75px' onclick='displayEditEmployee("+i+")'>Edit</button></td>";
+        tmp += "<td><button style='width: 75px' onclick='deleteEmployee("+i+")'>Delete</button></td>";
+        tmp += "<td><button style='width: 75px' onclick='calSalaryEmployee("+i+")'>Salary</button></td>";
+        tmp += "</tr>";
+
+        tmp += "</table>";
+        tmp += "<button onclick='displayMenu()'>Main Menu</button>";
+        document.write(tmp);
+    }
+
+    function displayEditEmployee(i) {
+        document.body.innerHTML = "";
+        let tmp = "<table>";
+        tmp += "<tr><td><label>Name :</label></td> <td><input id='name' type='text' value='"+arrListEmployee[i].getName()+"'></td></tr>";
+        tmp += "<tr><td><label>ID :</label></td><td> <input id='id' type='text' value='"+arrListEmployee[i].getID()+"'></td></tr>";
+        tmp += "<tr><td><label>Birthday :</label></td> <td><input id='birthday' type='date' value='"+arrListEmployee[i].getBirthday()+"'></td></tr>";
+        tmp += "<tr><td><label>Email :</label></td> <td><input id='email' type='text' value='"+arrListEmployee[i].getEmail()+"'></td></tr>";
+        tmp += "<tr><td><label>Address :</label></td> <td><input id='address' type='text' value='"+arrListEmployee[i].getAddr()+"'></td></tr>";
+        tmp += "<tr><td><label>Type :</label></td> <td><select id='type'><option>Manager</option><option>Sale</option><option>Marketing</option></td></tr>";
+        tmp += "</table>";
+        tmp += "<button onclick='editEmployee("+i+")'>OK</button>";
+        tmp += "<button onclick='displayEmployeeMenu()'>Cancel</button>";
+        document.write(tmp);
+        document.getElementById('type').options[arrListEmployee[i].getTypeNum()].setAttribute('selected','selected');
+    }
+
+    function editEmployee(i) {
+        if(checkEditEmployee()){
+            alert('Edit Employee Success!');
+            displayEmployeeMenu();
+        }else{
+            displayEditEmployee(i);
+        }
+    }
+
+    function checkEditEmployee(i) {
+        let name = document.getElementById("name").value;
+        name = fixName(name);
+        let id = document.getElementById("id").value;
+        if (!checkId(id)){
+            return false;
+        }else{
+            let birthday = document.getElementById("birthday").value;
+            let email = document.getElementById("email").value;
+            if(!checkEmail(email)){
+                return false;
+            }else{
+                let address = document.getElementById("address").value;
+                let type = document.getElementById("type").value;
+                let typenum = document.getElementById("type").selectedIndex;
+                arrListCustomer[i] = new Customers(name, id, birthday, email, address, type, typenum);
+                return true;
+                }
+            }
+    }
+
+    function deleteEmployee(i){
+        if(confirm('Are you sure?')){
+            arrListEmployee.splice(i,1);
+        }
+        displayEmployeeMenu();
+    }
+
+    function calSalaryEmployee(i){
+        let salary = 0;
+        switch (arrListEmployee[i]) {
+            case "Manager":
+                salary = 500;
+                break;
+            case "Sale":
+                salary = 300;
+                break;
+            case "Marketing":
+                salary = 200;
+                break;
+            default:
+                break;
+        }
+        alert("Salary: " + salary +"$");
     }
 
     let arrListCustomer = [];
-    displayCustomer();
+    let arrListEmployee = [];
+    displayMenu();
 
 </script>
 </body>
